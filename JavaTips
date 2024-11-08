@@ -1,0 +1,19 @@
+%d %s %f - format specifiers
+literals are nothing but datatypes int,char,string,boolean
+System.out.printf().println;
+Math.random();
+if(true){
+}
+datatype variable=value;
+int       i      = 10;
+variable can contain '$' and '_' and should not start with number and no keywords
+
+byte - 8bits (-128 to +127) short -16bits (-32768 to +32767) int -32 bits(+- 2.14 billion) long -64bits(after int)
+float -32bits (7 decimal & less precision) double-64 bits (15-16 decimal & better precision)
+byte=football score
+short=cricket score
+int=salary to expensive cars
+long=population of world
+crtl+D - delets the entire line )like (shift+home & backspace)
+JVM,JRE,JDK
+CTRl+D for full line delete
