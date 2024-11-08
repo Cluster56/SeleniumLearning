@@ -17,3 +17,4 @@ long=population of world
 crtl+D - delets the entire line )like (shift+home & backspace)
 JVM,JRE,JDK
 CTRl+D for full line delete
+CRTL+delete will delete the word which is after the cursor
