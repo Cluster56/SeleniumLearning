@@ -1,0 +1,131 @@
+testing -Tetsting next generation is an testing framework in java helps to performs structured execution and perform unit, functiona and E2e testing and report generation with in built methods
+
+<BeforeSuite><BeforeTest><BeforeClass><BeforeTest><Test>.............
+
+--------------------------------Priority--------------------------
+
+@Test(priority=1)
+public void loginBrowser(){
+
+}
+
+@Test(priority=2)
+public void devportal(){
+
+}
+
+--------------------------------xml--------------------------
+testng.xml is a configuration file that lets you organize, group, and run tests in a structured way without touching Java code.
+
+<suite name ="ReportingService>
+<test name = "Apigee">
+
+<classes>
+<class name ="runner file path"/>
+</classes>
+
+</test>
+</suite>
+
+--------------------------------depends on method--------------------------
+
+@Test(priority=1)
+public void loginBrowser(){
+
+}
+
+@Test(priority=2, dependsOnMethods={"loginBrowser"})
+public void devportal(){
+
+}
+
+--------------------------------groups--------------------------
+
+@Test(priority=1)
+public void loginBrowser(){
+
+}
+
+@Test(priority=2, dependsOnMethods={"loginBrowser"},groups={"Regression"})
+public void devportal(){
+
+}
+
+@Test(priority=2, groups={"Regression"})
+public void executeAllTestCases(){
+
+}
+
+@Test(priority=2, groups={"Smoke"})
+public void executefewTestCases(){
+
+}
+
+----------------------------------------parallel testing --------------------------
+
+<suite name="PBM" parallel="classes" thread-count="2">
+
+
+---------------------------------------data provider or data driver testing------------
+
+
+@DataProvider(name="loginData")
+public object[][] providerData(){
+
+    return object[][]{
+            {"Apigee", "qwe"},
+            {"TAS", "123"},
+            {"dev", "yr12"}
+
+};
+}
+
+@Test(dataprovider="loginData")
+public void accessApp(String username, String password){
+
+Syso(username+password)
+}
+
+---------------------------------------parameters from XML------------
+
+<suite name="PBM">
+<test name="V1">
+
+<Parameters name="Apigee" value="qwe"/>
+
+etc.....
+
+
+runner file
+
+@parameters("Apigee"}
+public void datafromXml(String Apigee){
+
+Syso("Apigee");
+}
+
+------------------------------Assert & Verify----------------------
+
+Assert hard assert fails when finds error 
+
+verify - SoftAssert
+softAssert.assertAll();
+
+Assert.assertEquals(actual, expected);
+Assert.assertTrue(condition);
+Assert.assertFalse(condition);
+Assert.assertNotEquals(a, b);
+Assert.assertNotNull(object);
+Assert.assertNull(object);
+---------------------------------------------------------------------------
+
+Listners
+n Selenium, listeners are interfaces that let you monitor or react to events that occur during your test execution. This is super useful when you want to:
+- Log actions automatically
+- Take screenshots on failure
+- Retry failed tests
+- Track test progress dynamically
+
+
+
+

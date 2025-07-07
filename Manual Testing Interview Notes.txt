@@ -1,0 +1,80 @@
+✅ Manual Testing Interview Notes – Full Copy
+
+1. What is Testing?
+- Testing ensures the software works as expected, meets business needs, and is bug-free.
+
+2. STLC (Software Testing Life Cycle)
+- Phases: Requirement Analysis → Test Planning → Test Case Design → Test Environment Setup → Test Execution → Test Closure
+
+3. Test Plan
+- A detailed document describing scope, strategy, team, timelines, resources, tools, and risk for testing.
+
+4. Test Strategy
+- High-level company-wide document describing how testing is handled across projects (tools, environments, roles, etc.)
+
+5. Black Box vs White Box
+- Black Box: Tester doesn't need code knowledge, tests functionality.
+- White Box: Developer tests internal logic/structure of code.
+
+6. Priority vs Severity
+- Priority = Urgency to fix
+- Severity = Impact of defect on system
+
+7. Bug vs Defect
+- Defect = Deviation from requirement (by tester)
+- Bug = Same issue, usually after release or common term
+- Failure = When the end-user faces it
+
+8. Types of Testing
+- Unit Testing → Dev-only, individual functions
+- Integration Testing → Interaction between modules
+- Interface Testing → API & system-to-system
+- System Testing → Full application
+- End-to-End Testing → Real user workflow
+- Regression Testing → Rechecking existing features
+- Smoke Testing → Basic functionality check
+- Sanity Testing → Quick testing of new fixes
+- Ad-hoc/Exploratory Testing → Informal/random tests
+
+9. Defect Life Cycle
+- New → Assigned → Open → Fixed → Retest → Verified → Closed
+- Rejected/Duplicate/Deferred possible based on situation
+
+10. Defect Management
+- Process of logging, triaging, fixing, retesting, and closing defects using tools like JIRA
+
+11. RCA (Root Cause Analysis)
+- Finding the *why* behind a bug using “5 Whys” or fishbone method
+
+12. Test Case vs Test Scenario
+- Scenario = High-level "what to test"
+- Case = Step-by-step "how to test" with input, expected result
+
+13. Test Data & Test Environment
+- Test Data = Input used during testing (valid/invalid/boundary/null)
+- Test Env = Complete setup (servers, apps, test data, APIs, DB, etc.)
+
+14. Entry & Exit Criteria
+- Entry = Conditions to start testing (env ready, build stable)
+- Exit = Conditions to stop testing (all cases run, bugs fixed)
+
+15. QA vs QC
+- QA = Process-focused, prevents bugs (planning, reviews)
+- QC = Product-focused, finds bugs (test execution)
+
+16. Static vs Dynamic Testing
+- Static = Without executing code (reviews, walkthroughs)
+- Dynamic = By executing code (manual, automation)
+
+17. Verification vs Validation
+- Verification = Are we building the product right? (process)
+- Validation = Are we building the right product? (result)
+
+18. RTM (Requirement Traceability Matrix)
+- A table that maps requirements → test cases → status → defects
+
+19. Exploratory vs Ad-hoc Testing
+- Exploratory = Skilled, learning while testing (semi-structured)
+- Ad-hoc = Random, informal, unplanned testing
+
+✨ You're interview-ready, bro!

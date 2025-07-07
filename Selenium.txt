@@ -1,0 +1,193 @@
+LOCATORS (8 Types)
+
+Basic Locators
+
+By.id("username")                // 1. ID
+By.name("login")                 // 2. Name
+By.className("btn-primary")      // 3. ClassName
+By.tagName("input")              // 4. TagName
+By.linkText("Forgot Password?")  // 5. LinkText
+By.partialLinkText("Forgot")     // 6. PartialLinkText
+
+Advanced Locators
+
+// 7. XPath
+By.xpath("//input[@id='email']")  
+By.xpath("//button[contains(text(),'Submit')]")
+
+// 8. CSS Selector
+By.cssSelector("#loginBtn")  
+By.cssSelector("input[name*='user']")
+
+3️⃣ WEBELEMENT - ALL METHODS
+
+// Basic Interactions
+element.click();
+element.sendKeys("text");
+element.clear();
+element.submit();  // Form submission
+
+// State Checks
+element.isDisplayed();  // Visible?
+element.isEnabled();   // Clickable?
+element.isSelected();  // Checkbox/Radio selected?
+
+// Attribute/CSS Values
+element.getAttribute("href");
+element.getCssValue("font-size");
+element.getRect();  // Returns size/location
+element.getScreenshotAs(OutputType.FILE);  // Takes screenshot
+
+// Find Child Elements
+element.findElement(By.xpath("./div"));
+4️⃣ DROPDOWNS (Select Class)
+java
+Select dropdown = new Select(driver.findElement(By.id("country")));
+
+// Selection
+dropdown.selectByVisibleText("USA");
+dropdown.selectByValue("us");
+dropdown.selectByIndex(1);
+
+// Deselection (Multi-select only)
+dropdown.deselectAll();
+dropdown.deselectByValue("us");
+
+// Getter Methods
+List<WebElement> options = dropdown.getOptions();
+WebElement firstSelected = dropdown.getFirstSelectedOption();
+boolean isMulti = dropdown.isMultiple();
+
+5️⃣ WAITS
+Implicit Wait (Global)
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+Explicit Wait (Conditional)
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loader")));
+
+Fluent Wait (Custom Polling)
+Wait<WebDriver> fluentWait = new FluentWait<>(driver)
+    .withTimeout(Duration.ofSeconds(30))
+    .pollingEvery(Duration.ofSeconds(2))
+    .ignoring(NoSuchElementException.class);
+
+6️⃣ ALERTS, FRAMES, WINDOWS
+Alerts
+Alert alert = driver.switchTo().alert();
+alert.accept();      // Click OK
+alert.dismiss();    // Click Cancel
+alert.getText();    // Get alert text
+alert.sendKeys("text");  // Input text
+
+Frames
+driver.switchTo().frame(0);       // By index
+driver.switchTo().frame("frameName");  // By name/ID
+driver.switchTo().defaultContent();    // Return to main page
+
+Windows/Tabs
+String mainWindow = driver.getWindowHandle();
+for (String window : driver.getWindowHandles()) {
+    driver.switchTo().window(window);  // Switch to new tab
+}
+driver.switchTo().window(mainWindow);  // Switch back
+
+7️⃣ ACTIONS CLASS (Mouse/Keyboard)
+
+Actions actions = new Actions(driver);
+
+// Mouse Actions
+actions.moveToElement(element).perform();       // Hover
+actions.dragAndDrop(source, target).perform();  // Drag-and-drop
+actions.contextClick(element).perform();        // Right-click
+actions.doubleClick(element).perform();
+
+// Keyboard Actions
+actions.sendKeys(Keys.ENTER).perform();
+actions.keyDown(Keys.SHIFT).sendKeys("a").keyUp(Keys.SHIFT).perform();  // Uppercase 'A'
+
+8️⃣ ADVANCED TOPICS
+JavascriptExecutor
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("arguments[0].scrollIntoView();", element);  // Scroll to element
+js.executeScript("return document.title;");                  // Get page title
+js.executeScript("arguments[0].click();", element);          // Force click
+
+Robot Class (OS-Level Actions)
+
+Robot robot = new Robot();
+robot.keyPress(KeyEvent.VK_CONTROL);  // Press Ctrl
+robot.keyPress(KeyEvent.VK_V);       // Press V (Paste)
+robot.keyRelease(KeyEvent.VK_V);     // Release V
+robot.keyRelease(KeyEvent.VK_CONTROL); // Release Ctrl
+
+9️⃣ TESTNG/JUNIT INTEGRATION
+TestNG Annotations
+@Test
+public void loginTest() { /* Test code */ }
+
+@BeforeMethod
+public void setup() { /* Pre-test setup */ }
+
+@DataProvider
+public Object[][] testData() { return new Object[][] { {"user1", "pass1"}, {"user2", "pass2"} }; }
+Assertions
+java
+Assert.assertEquals(actual, expected);
+Assert.assertTrue(driver.getTitle().contains("Home"));
+SoftAssert softAssert = new SoftAssert();
+softAssert.assertAll();
+
+🔟 PAGE OBJECT MODEL (POM)
+
+public class LoginPage {
+    WebDriver driver;
+    By username = By.id("username");
+    By password = By.id("password");
+
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void login(String user, String pass) {
+        driver.findElement(username).sendKeys(user);
+        driver.findElement(password).sendKeys(pass);
+    }
+}
+
+
+1️⃣1️⃣ SELENIUM GRID
+Hub Setup
+bash
+java -jar selenium-server-standalone.jar -role hub
+Node Setup
+bash
+java -jar selenium-server-standalone.jar -role node -hub http://<hub-ip>:4444/grid/register
+Remote WebDriver
+java
+DesiredCapabilities caps = new DesiredCapabilities();
+caps.setBrowserName("chrome");
+WebDriver driver = new RemoteWebDriver(new URL("http://hub-ip:4444/wd/hub"), caps);
+
+1️⃣2️⃣ DEBUGGING & EXCEPTIONS
+Exception	Cause	Fix
+NoSuchElementException	Element not found	Verify locator/XPath
+StaleElementReferenceException	DOM changed	Re-find the element
+ElementNotInteractableException	Element hidden	Use JavascriptExecutor
+
+1️⃣3️⃣ TOP 20 INTERVIEW QUESTIONS
+Q: Difference between findElement and findElements?
+
+findElement: Returns first match (throws exception if not found).
+
+findElements: Returns list (empty if no match).
+
+Q: How to handle dynamic elements?
+
+Use relative XPath/CSS (contains(), starts-with()).
+
+Use explicit waits.
+
+Q: Explain Page Object Model (POM).
+
+Design pattern to store locators and methods separately for maintainability.

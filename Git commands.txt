@@ -1,0 +1,67 @@
+# 🔹 INIT & CLONE
+git init                               # Start a new Git repo
+git clone <repo-url>                  # Clone remote repo to local
+
+# 🔹 STATUS & LOGS
+git status                             # Check file changes
+git log                                # Show commit history
+git diff                               # Show changes not staged
+
+# 🔹 ADD & COMMIT
+git add .                              # Stage all changes
+git add <file>                         # Stage specific file
+git commit -m "message"               # Commit staged changes
+
+# 🔹 PUSH & PULL
+git push                               # Push to remote repo
+git push origin <branch>              # Push to specific branch
+git push -u origin <branch>           # Push and track branch
+git pull                               # Pull and merge latest changes
+git pull origin <branch>              # Pull specific branch
+
+# 🔹 BRANCHING
+git branch                             # List branches
+git branch <name>                     # Create new branch
+git checkout <name>                   # Switch to branch
+git checkout -b <name>                # Create + switch to new branch
+
+# 🔹 MERGE & REBASE
+git merge <branch>                    # Merge branch into current
+git rebase <branch>                   # Reapply commits on top of branch
+
+# 🔹 FETCH & MERGE (Remote Updates)
+git fetch                              # Get remote changes (no merge)
+git merge origin/<branch>            # Merge fetched updates into local
+
+# 🔹 STASH (TEMP SAVE)
+git stash                              # Save uncommitted changes
+git stash pop                          # Reapply stashed changes
+
+# 🔹 UNDO & RESET
+git reset <file>                      # Unstage file
+git reset --soft HEAD~1               # Undo commit, keep changes
+git reset --hard HEAD~1               # Undo commit & changes (careful!)
+git revert <commit-id>                # Safely undo commit (creates new one)
+
+# 🔹 REMOVE FILE
+git rm <file>                         # Delete file from working dir & Git
+git rm --cached <file>                # Untrack file but keep it locally
+
+# 🔹 REMOTE MANAGEMENT
+git remote -v                          # Show remote URLs
+git remote add origin <url>          # Add remote repo
+
+# 🔹 TAGGING
+git tag                                # List all tags
+git tag <tag-name>                    # Add tag to current commit
+
+# 🔹 MERGE CONFLICT (RESOLUTION)
+# After conflict, manually fix code, then:
+git add <file>                        # Stage resolved file
+git commit -m "Resolved conflict"     # Commit after fixing
+git merge --abort                     # Cancel ongoing merge
+
+
+Merge is used to combine two branches and preserve their full history by creating a merge commit. Rebase is used to pull the latest code from another branch (like main) and replay my current branch's commits on top of it — making it look like my work started from the latest update.
+
+git stash lets me temporarily save my changes without committing them, so I can switch branches or pull updates without losing my progress. Later I can reapply those changes.

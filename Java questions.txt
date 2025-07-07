@@ -1,0 +1,231 @@
+"Abstraction in Java means hiding the implementation details and exposing only the necessary information to the user. It can be achieved using abstract classes and interfaces. An abstract class can have both abstract and non-abstract methods. The abstract methods are implemented by the subclasses, allowing them to define their own specific behavior. This helps keep the code clean, modular, and hides unnecessary internal logic from the user."
+
+In my current project, we use abstraction in several places. One example is in handling different endpoint types like TAS and APG. Each endpoint requires a different client name and client secret to generate an access token. So, we created an abstract class that defines a method to get the token, and common logic such as headers or base URI. Then, we have separate subclasses for each endpoint type, where we provide the specific client name and client secret. This way, based on the endpoint type, the appropriate subclass is used, and the user can simply call a method like getAccessToken() without worrying about the internal logic. This approach helps keep the code clean, reusable, and easy to maintain.
+
+An abstract class can have both abstract and non-abstract methods. It can also include some implemented logic, which can be inherited by its subclasses. An interface, on the other hand, originally had only abstract methods, but since Java 8, it can also contain default and static methods. So an interface acts more like a blueprint — it defines what should be done, but not how. A class can extend only one abstract class, but it can implement multiple interfaces
+
+In Java, top-level classes cannot be declared as private because Java needs them to be accessible across different packages or at least within the project. Allowing private would make the class completely inaccessible, which defeats its purpose. However, Java does allow access modifiers like private, protected, and public for inner classes, which are defined inside another class. A private inner class can be accessed only within its outer class.
+
+Encapsulation means hiding the internal details of a class by making variables private and exposing them through public getter and setter methods. It helps protect data and control how it's accessed or modified.
+its like making an API response private and returning response only when the token is valid
+
+In Java, polymorphism has two types: method overloading and method overriding.
+
+Method overloading means defining multiple methods with the same name in the same class, but with different parameters. It's used when you want the same method to perform different tasks based on the input.
+
+Method overriding happens when a child class provides its own implementation of a method that is already defined in the parent class, with the same method name and parameters. This allows the child class to change or extend the behavior of the parent method.
+
+
+A static object is created at the class level and shared among all instances. It's useful when you want only one copy of an object in memory, like for reusable services or utility classes. In my project, for example, we have a static Webdriver object that is shared across test classes to avoid regenerating the token repeatedly.
+
+Exception handling lets us manage runtime errors using try-catch blocks.
+It prevents the program from crashing and handles errors gracefully.
+
+✅ 2. throws
+The throws keyword is used in method declarations to pass exception handling to the caller.
+It's mostly used for checked exceptions like IOException.
+
+✅ 3. Throwable
+Throwable is the parent class of all errors and exceptions in Java.
+It helps us catch both Exception and Error if needed.
+
+✅ 4. clone()
+The clone() method is used to create a copy of an object.
+It calls super.clone() and requires the class to implement Cloneable.
+
+throw is used to actually throw an exception inside the method, while throws is used in the method signature to declare that the method might throw an exception.
+
+A custom exception is a user-defined class that extends Exception or RuntimeException. We use it to represent specific business errors in a more meaningful way.
+
+✅ 1. hashCode()
+hashCode() returns an integer that represents an object’s location in memory for hash-based collections.
+It's used in HashMap, HashSet, etc., to quickly store and find objects.
+
+✅ 2. Comparable
+Comparable is used to define natural/default sorting inside a class by overriding compareTo().
+Useful when you want a single fixed way to sort objects like by ID or name.
+
+✅ 3. Comparator
+Comparator allows you to define custom or multiple sorting rules outside the class.
+You can sort one time by name, another time by age, etc., using compare().
+
+Comparable: "Used to define one default way to sort an object — logic is inside the class using compareTo()."
+
+Comparator: "Used to define multiple or custom sorting logics outside the class using compare().
+
+// Declaration with size
+int[] arr = new int[5];
+
+// Declaration and initialization
+int[] arr2 = {10, 20, 30, 40};
+
+// Array of Strings
+String[] names = new String[3];
+
+// Alternate declaration (valid but less preferred)
+int arr3[] = new int[4];
+
+// Original array
+int[] oldArray = {1, 2, 3};
+
+// New larger array
+int[] newArray = new int[5];
+
+// Copy old contents to new array
+System.arraycopy(oldArray, 0, newArray, 0, oldArray.length);
+
+// OR manual copy
+for (int i = 0; i < oldArray.length; i++) {
+    newArray[i] = oldArray[i];
+}
+
+import java.util.Arrays;
+
+// Ascending order
+int[] numbers = {5, 2, 8, 1};
+Arrays.sort(numbers);
+
+import java.util.Arrays;
+import java.util.Collections;
+
+// Use Integer[] for reverseOrder
+Integer[] numbers = {5, 2, 8, 1};
+Arrays.sort(numbers, Collections.reverseOrder());
+
+- Arrays are fixed in size; to resize, we create a new array and copy the old data.
+- Use Arrays.sort() to sort arrays in ascending order.
+- For descending order, use Integer[] with Collections.reverseOrder().
+
+Array is fixed in size and can hold primitives, while ArrayList is dynamic and provides flexible methods like add, remove, and get — but it stores only objects.
+
+Lambda expressions are used to define functions in a shorter way — they're useful when working with functional interfaces and collections
+
+List<String> names = Arrays.asList("Ace", "Bro", "Dude");
+
+names.forEach(name -> System.out.println(name));
+
+A Functional Interface in Java is an interface that contains only one abstract method.
+It is used to implement lambda expressions and can have default or static methods in addition to the one abstract method.
+
+@FunctionalInterface
+interface Message {
+    void greet();
+}
+
+// Lambda using functional interface
+Message m = () -> System.out.println("Hello world");
+m.greet();
+
+Predicate is a functional interface in Java 8 that takes one input and returns a boolean. It’s mainly used for filtering or checking conditions.
+
+//Simple Predicate
+Predicate<Integer> isEven = n -> n % 2 == 0;
+System.out.println(isEven.test(4));
+
+UnaryOperator takes one value and returns a modified version of the same type (like passing a string to get an uppercase). BinaryOperator takes two values of the same type and returns one result of the same type.(passing 2 values like adding 2+3)
+
+
+The :: operator is used to refer to a method or constructor without calling it.
+It gives a shortcut to use existing methods instead of writing full lambda expressions.
+
+List<String> names = Arrays.asList("Ace", "Jarvis", "Tony");
+
+// Instead of: names.forEach(name -> System.out.println(name));
+names.forEach(System.out::println);
+
+A Stack is a linear data structure that follows the LIFO (Last-In, First-Out) principle — the last element added is the first one to be removed
+
+Stack<String> navHistory = new Stack<>();
+
+public void goTo(String url) {
+    driver.navigate().to(url);
+    navHistory.push(url);
+}
+
+public void goBack() {
+    if (!navHistory.isEmpty()) {
+        navHistory.pop();  // remove current
+        if (!navHistory.isEmpty()) {
+            driver.navigate().to(navHistory.peek());  // go to previous
+        }
+    }
+}
+
+Array helps us to store elements of same data type in a continuous memory location when the size is known
+
+Iterable is the process of iterating through the elements of the loop one by one 
+
+A List in Java is an ordered collection that allows duplicates while maintaining the insertion order
+
+A linked list is a linear data structure where elements are stored in nodes, and each node contains a data value and a reference (or pointer) to the next node in the sequence
+
+A Set is a collection that does not allow duplicate elements.
+It doesn’t maintain any specific order unless you use a specific implementation.
+
+HashSet - no duplication and order
+LinkedHashSet- no duplication but maintains order
+TreeSet- no duplication and sort the order
+
+A Queue is a linear data structure that follows the FIFO (First-In, First-Out) principle.
+The element added first will be removed first.
+LinkedList, PriorityQueue, ArrayDeque
+
+Method	Action	            Throws Exception?	Returns Null If Empty?
+offer()	Add to end	           ❌ No	✅ Yes
+add()	Add to end	           ✅ Yes	❌ No
+poll()	Remove and return head	   ❌ No	✅ Yes
+remove()Remove and return head	   ✅ Yes	❌ No
+peek()	Return head (no remove)	   ❌ No	✅ Yes
+element(} Return head (no remove)  ✅ Yes	❌ No
+
+ PriorityQueue:
+
+"It’s a queue where elements are processed based on priority (like lowest value first), not order of insertion."
+
+🟦 ArrayDeque:
+
+"It’s a double-ended queue — I can add or remove from both front and back, and it's faster than LinkedList."
+
+PriorityQueue is like a TreeSet that allows duplicates and gives me the smallest value first.
+ArrayDeque is like a faster LinkedList — lets me add/remove from both ends without the overhead
+
+A Map is a collection of key-value pairs.
+Each key is unique, and it maps to a specific value.
+
+Collections.sort() is used for sorting lists. For custom sorting, I use Comparable for natural order and Comparator for more flexible logic.
+
+Since normal Sets like HashSet are unordered, I convert them to a List and sort it using Collections.sort(). If I need automatic sorting, I use TreeSet.
+
+Set uses hashcode to save the value in a hash table bucket, when a value is already present in the bucket it calls the equals method to check if its same. then if its true it wont add the value.
+
+Access by index	✅ ArrayList	Backed by an array → O(1) random access
+Insert / Remove (middle/front)	✅ LinkedList	Doubly linked list → No shifting required (O(1) at ends)
+Insert / Remove (end only)	✅ ArrayDeque	Faster than LinkedList for adding/removing from both ends (O(1))
+Insert / Remove with key	✅ HashMap / HashSet	O(1) for add/remove if hashCode() is well-distributed
+Check if element exists	✅ HashSet	O(1) lookup using hash-based storage
+
+Design patterns are proven solutions to common problems in software design.
+They’re like templates or blueprints you can reuse while coding — especially in object-oriented design (like Java, Selenium frameworks, etc.).
+
+Singleton ensures that only one object (instance) of a class is created and shared throughout the application.
+
+Factory Pattern is a creational design pattern that provides a way to create objects without exposing the exact class name. Instead of using new, we delegate object creation to a method based on some input.
+
+WebDriver driver = new ChromeDriver();  
+WebDriver driver2 = new FirefoxDriver();
+
+That’s hard to maintain.
+
+Instead, you do:
+
+WebDriver driver = BrowserFactory.getBrowser("chrome");
+
+Builder Pattern helps you construct complex objects step-by-step, especially when an object has many optional fields.
+---when there are lot of optional fields we can use builder to build the request easily
+
+new User.Builder().setName("Ace").setAge(25).setCountry("India").build();
+
+Decorator Pattern lets me add features to an object dynamically without changing the original class
+like adding sugar, cream etc in coffee
+
+Composite Pattern is used to treat individual objects and groups of objects the same way.

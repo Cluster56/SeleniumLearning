@@ -1,0 +1,35 @@
+// Q1: Forcefully click a button using JS
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("arguments[0].click();", driver.findElement(By.id("yourButtonId")));
+
+// Q2: Set value into input field using JS
+WebElement input = driver.findElement(By.id("yourInputId"));
+js.executeScript("arguments[0].value='Ace123';", input);
+
+// Q3: Scroll to element using JS
+WebElement element = driver.findElement(By.id("yourElementId"));
+js.executeScript("arguments[0].scrollIntoView(true);", element);
+
+// Q4: Highlight an element with yellow border
+WebElement highlight = driver.findElement(By.id("yourElementId"));
+js.executeScript("arguments[0].style.border='3px solid yellow'", highlight);
+
+// Q5: Get page title using JSExecutor
+String title = (String) js.executeScript("return document.title;");
+System.out.println("Page Title: " + title);
+
+// 1. Press Ctrl + C to copy
+Robot robot = new Robot();
+robot.keyPress(KeyEvent.VK_CONTROL);
+robot.keyPress(KeyEvent.VK_C);
+robot.keyRelease(KeyEvent.VK_C);
+robot.keyRelease(KeyEvent.VK_CONTROL);
+
+// 2. Wait a moment for clipboard to update
+robot.delay(500);
+
+// 3. Get the copied content into a String
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+String copiedText = (String) clipboard.getData(DataFlavor.stringFlavor);
+
+System.out.println("Copied text: " + copiedText);
